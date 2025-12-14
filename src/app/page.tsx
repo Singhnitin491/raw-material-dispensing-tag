@@ -31,7 +31,7 @@ export default function UnderTestLabel({
     sign: "",
   });
 
-  function handleChange(e) {
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFields((s) => ({ ...s, [name]: value }));
   }

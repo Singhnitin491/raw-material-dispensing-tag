@@ -19,7 +19,7 @@ export default function RawMaterialDispensingTag() {
     sign: "",
   });
 
-  const handleChange = (e) => {
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
