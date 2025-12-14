@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Link from "next/link";
 
 export default function RawMaterialDispensingTag() {
   const [form, setForm] = useState({
@@ -19,7 +20,7 @@ export default function RawMaterialDispensingTag() {
     sign: "",
   });
 
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -56,6 +57,16 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
   return (
     <>
+      {/* NAVIGATION LINK */}
+      <div className="max-w-4xl mx-auto mb-4 print:hidden">
+        <Link
+          href="/"
+          className="text-blue-600 font-semibold hover:underline"
+        >
+          Move to next{"->"}
+        </Link>
+      </div>
+
       {/* PRINT AREA */}
       <div className="max-w-4xl mx-auto border border-black text-sm">
         {/* Header */}
@@ -225,7 +236,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         </div>
       </div>
 
-      {/* ACTION BUTTONS (NOT PRINTED) */}
+      {/* ACTION BUTTONS */}
       <div className="flex gap-4 justify-center mt-6 print:hidden">
         <button
           onClick={handlePrint}
