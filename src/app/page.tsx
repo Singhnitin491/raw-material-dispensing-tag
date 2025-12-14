@@ -1,65 +1,210 @@
-import Image from "next/image";
+"use client"
+import React, { useState } from "react";
 
-export default function Home() {
+/**
+ * Editable Under Test Label Component - form style for the main section
+ */
+export default function UnderTestLabel({
+  materialName = "ACETOXY ETHYLE BROMINE",
+  controlNo = "RM/02714/25",
+  batchNo = "AEBD250714",
+  mfgDate = "01/08/25",
+  expDate = "31/12/2025",
+  suppliedBy = "SCL LIFESCIENCES LIMITED",
+  manufacBy = "SCL LIFESCIENCES LIMITED",
+  qty = "312 KG",
+  containers = "50/50",
+  date = "11/12/2025",
+}) {
+  // Local editable state initialized from props so this section behaves like a form
+  const [fields, setFields] = useState({
+    materialName,
+    controlNo,
+    batchNo,
+    mfgDate,
+    expDate,
+    suppliedBy,
+    manufacBy,
+    qty,
+    containers,
+    date,
+    sign: "",
+  });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFields((s) => ({ ...s, [name]: value }));
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="w-full max-w-3xl border border-black mx-auto text-sm">
+      {/* Header */}
+      <div className="text-center bg-yellow-300 font-extrabold text-4xl py-4 border-b border-black">
+        UNDER TEST
+      </div>
+
+      {/* Main Content - form style */}
+      <div className="grid grid-cols-2 gap-4 p-4 text-base">
+        <div>
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Material Name:</span>
+            <input
+              name="materialName"
+              value={fields.materialName}
+              onChange={handleChange}
+              className="w-full border border-gray-400 rounded px-2 py-1"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Control No:</span>
+            <input
+              name="controlNo"
+              value={fields.controlNo}
+              onChange={handleChange}
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Batch No:</span>
+            <input
+              name="batchNo"
+              value={fields.batchNo}
+              onChange={handleChange}
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Mfg Date:</span>
+            <input
+              name="mfgDate"
+              value={fields.mfgDate}
+              onChange={handleChange}
+              placeholder="DD/MM/YY or YYYY-MM-DD"
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Exp/Retest Date:</span>
+            <input
+              name="expDate"
+              value={fields.expDate}
+              onChange={handleChange}
+              placeholder="DD/MM/YYYY"
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Supplied By:</span>
+            <input
+              name="suppliedBy"
+              value={fields.suppliedBy}
+              onChange={handleChange}
+              className="w-full border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Manufac By:</span>
+            <input
+              name="manufacBy"
+              value={fields.manufacBy}
+              onChange={handleChange}
+              className="w-full border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
         </div>
-      </main>
+
+        <div>
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Qty:</span>
+            <input
+              name="qty"
+              value={fields.qty}
+              onChange={handleChange}
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">No. Of Container:</span>
+            <input
+              name="containers"
+              value={fields.containers}
+              onChange={handleChange}
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Date:</span>
+            <input
+              name="date"
+              value={fields.date}
+              onChange={handleChange}
+              placeholder="DD/MM/YYYY"
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          <label className="flex items-center justify-between gap-3 mb-2">
+            <span className="font-semibold">Sign:</span>
+            <input
+              name="sign"
+              value={fields.sign}
+              onChange={handleChange}
+              placeholder="Signature"
+              className="w-1/2 border border-gray-400 rounded px-2 py-1"
+            />
+          </label>
+
+          {/* optional: small preview of filled values or actions */}
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="flex justify-end gap-3 px-4 pb-4">
+        <button
+          onClick={() => window.print()}
+          className="px-4 py-2 border border-black font-semibold hover:bg-gray-100"
+        >
+          Print
+        </button>
+
+        <button
+          onClick={() =>
+            setFields({
+              materialName: "",
+              controlNo: "",
+              batchNo: "",
+              mfgDate: "",
+              expDate: "",
+              suppliedBy: "",
+              manufacBy: "",
+              qty: "",
+              containers: "",
+              date: "",
+              sign: "",
+            })
+          }
+          className="px-4 py-2 border border-black font-semibold hover:bg-gray-100"
+        >
+          Clear Form
+        </button>
+      </div>
+
+      {/* Footer */}
+      <div className="text-center font-bold text-xl border-t border-b border-black py-3">
+        CEPH LIFESCIENCES PRIVATE LIMITED
+      </div>
+
+      <div className="p-3 text-base">
+        <strong>Reference SOP NO WH-SG-004</strong>
+      </div>
     </div>
   );
 }
